@@ -11,14 +11,18 @@ import WebKit
 
 class deepHouseController: UIViewController {
 
-    let artists = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "Lauren%20Lo%20Sung", "DJ%Pierre"]
+    @IBOutlet weak var webView: WKWebView!
+    let foo = WKWebView()
+    let artists = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "Lauren%20Lo%20Sung"]
+    var tracksToChoose:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         let chosenOne = artists[Int.random(in: 1..<artists.count)]
-        let apiKey = "AIzaSyCozKD1dSLnwhM-d_246aDlohMXO9hKv5w"
+        let apiKey = "AIzaSyDDo_KTjSJhP-S2w32QRVDpWLQ0-kRslMo"
         let session = URLSession.shared
-        let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=\(chosenOne)&key=\(apiKey)")
+        let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&q=\(chosenOne)&key=\(apiKey)")
         let task = session.dataTask(with: url!){ data,response,error in
             
             if error != nil || data == nil{
@@ -29,7 +33,7 @@ class deepHouseController: UIViewController {
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 print("Server error!")
                 return
-            }
+              }
             
             guard let mime = response.mimeType, mime == "application/json" else {
                 print("Wrong MIME type!")
@@ -38,11 +42,15 @@ class deepHouseController: UIViewController {
             
             do{
                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
-                if let items = json!["items"] as? Array<Dictionary<String,Any>>{
-                    for item in items{
-                        print(item)
+                if let dataArray = json!["items"] as? Array<Dictionary<String,Any>>{
+                    for object in dataArray{
+                        if let dictionary = object as? [String: Any]{
+                            let idDetails = dictionary["id"] as! [String:String]
+                            let videoID = idDetails["videoId"]
+                            if(videoID != nil) {self.tracksToChoose.append(videoID!)}
+                        }
                     }
-                    
+                    self.playRandomSong(self.tracksToChoose)
                 }
                 //print(json)
             } catch {
@@ -52,6 +60,20 @@ class deepHouseController: UIViewController {
         }
         task.resume()
         // Do any additional setup after loading the view.
+    }
+    
+    //Function to play a random video on YouTube from a collection of links
+    func playRandomSong(_  trackList: [String]){
+        let size = trackList.count
+        let chosenSong = trackList[Int.random(in: 1..<size)]
+        if let url = URL(string: "https://www.youtube.com/watch?v=\(chosenSong)")
+        {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+        else {
+            print("URL not found")
+        }
     }
     
 
