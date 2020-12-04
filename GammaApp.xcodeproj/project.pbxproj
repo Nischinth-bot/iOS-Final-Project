@@ -16,6 +16,7 @@
 		43755C372573911500B4AEE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43755C352573911500B4AEE8 /* LaunchScreen.storyboard */; };
 		43755C422573911500B4AEE8 /* GammaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43755C412573911500B4AEE8 /* GammaAppTests.swift */; };
 		43755C4D2573911500B4AEE8 /* GammaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43755C4C2573911500B4AEE8 /* GammaAppUITests.swift */; };
+		43755C5B2573A7D100B4AEE8 /* deepHouseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43755C5A2573A7D100B4AEE8 /* deepHouseController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		43755C482573911500B4AEE8 /* GammaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GammaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43755C4C2573911500B4AEE8 /* GammaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GammaAppUITests.swift; sourceTree = "<group>"; };
 		43755C4E2573911500B4AEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43755C5A2573A7D100B4AEE8 /* deepHouseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deepHouseController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				43755C272573911300B4AEE8 /* AppDelegate.swift */,
 				43755C292573911300B4AEE8 /* SceneDelegate.swift */,
 				43755C2B2573911300B4AEE8 /* ViewController.swift */,
+				43755C5A2573A7D100B4AEE8 /* deepHouseController.swift */,
 				43755C2D2573911300B4AEE8 /* Main.storyboard */,
 				43755C332573911500B4AEE8 /* Assets.xcassets */,
 				43755C352573911500B4AEE8 /* LaunchScreen.storyboard */,
@@ -266,6 +269,7 @@
 				43755C322573911300B4AEE8 /* GammaApp.xcdatamodeld in Sources */,
 				43755C282573911300B4AEE8 /* AppDelegate.swift in Sources */,
 				43755C2A2573911300B4AEE8 /* SceneDelegate.swift in Sources */,
+				43755C5B2573A7D100B4AEE8 /* deepHouseController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
