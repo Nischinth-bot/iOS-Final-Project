@@ -16,18 +16,16 @@ class MusicVideoLoaderViewController: UIViewController {
     
     @IBOutlet var myView: UIView!
     let foo = WKWebView()
-    let deepHouse = [" Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
+    let deepHouse = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
     let jazz = ["Miles%20Davis","John%20Coltrane", "Charles%20Mingus","Art%20blakey","Donald%20Byrd", "Alice%20Coltrane"]
     let dub = ["Burial","hyperdub", "dj%20rashad", "dj%20spinn%20hyperdub"]
+    let techno = ["Arnaud%20Le%20Texier","Planetary%20Assault%20Systems","Ness%20techno","Joachim%20Spieth","Affin%20Records","Polar%20Insertia","Codex%20Empire"]
     var tracksToChoose:[String] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doRightSwipe(_:)))
-        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doLeftSwipe(_:)))
-        myView.addGestureRecognizer(rightSwipeGesture)
-        myView.addGestureRecognizer(leftSwipeGesture)
+        addSwipeGestures()
         getJSONAndLoadVideo()
 
         // Do any additional setup after loading the view.
@@ -102,9 +100,18 @@ class MusicVideoLoaderViewController: UIViewController {
             return self.jazz
         case "Hyperdub":
             return self.dub
+        case "Techno":
+            return self.techno
         default:
             return [ ]
         }
+    }
+    
+    func addSwipeGestures(){
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doRightSwipe(_:)))
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doLeftSwipe(_:)))
+        myView.addGestureRecognizer(rightSwipeGesture)
+        myView.addGestureRecognizer(leftSwipeGesture)
     }
     
     @IBAction func doRightSwipe(_ sender: UISwipeGestureRecognizer) {
@@ -116,6 +123,8 @@ class MusicVideoLoaderViewController: UIViewController {
         print("Left swipe detected")
         self.getJSONAndLoadVideo()
     }
+    
+    
     
     
     /*

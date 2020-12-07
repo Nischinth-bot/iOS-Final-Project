@@ -27,6 +27,8 @@ class ViewController: UIViewController {
             vc?.identifier = "Jazz"
         case "link2dub":
             vc?.identifier = "Hyperdub"
+        case "link2techno":
+            vc?.identifier = "Techno"
         default:
             return
         }

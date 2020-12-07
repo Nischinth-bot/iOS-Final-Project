@@ -41,6 +41,14 @@
                                     <segue destination="9ll-JS-9eX" kind="show" identifier="link2jazz" id="gxA-b0-O3q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmM-Fb-km8">
+                                <rect key="frame" x="182" y="590" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Techno"/>
+                                <connections>
+                                    <segue destination="9ll-JS-9eX" kind="show" identifier="link2techno" id="d6h-pk-Dbu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
@@ -118,6 +126,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gxA-b0-O3q"/>
+        <segue reference="d6h-pk-Dbu"/>
     </inferredMetricsTieBreakers>
 </document>
