@@ -9,16 +9,36 @@
 import UIKit
 import WebKit
 
-class deepHouseController: UIViewController {
+class deepHouseController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     let foo = WKWebView()
-    let artists = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20%house%music"]
+    let artists = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
     var tracksToChoose:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getJSONAndLoadVideo()
+
+        // Do any additional setup after loading the view.
+    }
     
+    //Function to play a random video on YouTube from a collection of links
+    func playRandomSong(_  trackList: [String]){
+        let size = trackList.count
+        let chosenSong = trackList[Int.random(in: 1..<size)]
+        if let url = URL(string: "https://www.youtube.com/watch?v=\(chosenSong)")
+        {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+        else {
+            print("URL not found")
+        }
+    }
+    
+    func getJSONAndLoadVideo()
+    {
         let chosenOne = artists[Int.random(in: 1..<artists.count)]
         let apiKey = "AIzaSyDDo_KTjSJhP-S2w32QRVDpWLQ0-kRslMo"
         let session = URLSession.shared
@@ -58,25 +78,11 @@ class deepHouseController: UIViewController {
             }
             
         }
+        
+        while(task == nil){ usleep(1)}
         task.resume()
-        // Do any additional setup after loading the view.
     }
     
-    //Function to play a random video on YouTube from a collection of links
-    func playRandomSong(_  trackList: [String]){
-        let size = trackList.count
-        let chosenSong = trackList[Int.random(in: 1..<size)]
-        if let url = URL(string: "https://www.youtube.com/watch?v=\(chosenSong)")
-        {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
-        else {
-            print("URL not found")
-        }
-    }
-    
-
     /*
     // MARK: - Navigation
 
