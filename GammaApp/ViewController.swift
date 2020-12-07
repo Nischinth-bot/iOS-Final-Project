@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-    let vc = segue.destination as? deepHouseController
+    let vc = segue.destination as? MusicVideoLoaderViewController
         switch(segue.identifier){
         case "link2house":
             vc?.identifier = "Deep House"

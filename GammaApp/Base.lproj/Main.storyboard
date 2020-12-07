@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="101.78571428571428"/>
         </scene>
-        <!--Deep House Controller-->
+        <!--Music Video Loader View Controller-->
         <scene sceneID="XLy-MN-lja">
             <objects>
-                <viewController id="9ll-JS-9eX" customClass="deepHouseController" customModule="GammaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9ll-JS-9eX" customClass="MusicVideoLoaderViewController" customModule="GammaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lPo-uG-QsJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,13 +91,28 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="eAz-pr-s0C"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="NqJ-57-fWY" appends="YES" id="7MA-oO-ezA"/>
+                            <outletCollection property="gestureRecognizers" destination="rCy-DS-vUd" appends="YES" id="Nxk-Hl-KVM"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Nnb-SR-rGt"/>
                     <connections>
+                        <outlet property="myView" destination="lPo-uG-QsJ" id="c1R-tf-znT"/>
                         <outlet property="webView" destination="BXF-9h-joV" id="hKn-Ut-ajA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="chf-0H-Hij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="NqJ-57-fWY" userLabel="Right Gesture Recognizer">
+                    <connections>
+                        <action selector="doRightSwipe:" destination="9ll-JS-9eX" id="Kgo-hR-S2Q"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="rCy-DS-vUd" userLabel="Left Gesture Recognizer">
+                    <connections>
+                        <action selector="doLeftSwipe:" destination="9ll-JS-9eX" id="BXT-wx-aqq"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="784.82142857142856"/>
         </scene>

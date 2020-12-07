@@ -9,18 +9,25 @@
 import UIKit
 import WebKit
 
-class deepHouseController: UIViewController {
+class MusicVideoLoaderViewController: UIViewController {
 
     var identifier: String = ""
     @IBOutlet weak var webView: WKWebView!
+    
+    @IBOutlet var myView: UIView!
     let foo = WKWebView()
     let deepHouse = [" Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
     let jazz = ["Miles%20Davis","John%20Coltrane", "Charles%20Mingus","Art%20blakey","Donald%20Byrd", "Alice%20Coltrane"]
     let dub = ["Burial","hyperdub", "dj%20rashad", "dj%20spinn%20hyperdub"]
     var tracksToChoose:[String] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doRightSwipe(_:)))
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doLeftSwipe(_:)))
+        myView.addGestureRecognizer(rightSwipeGesture)
+        myView.addGestureRecognizer(leftSwipeGesture)
         getJSONAndLoadVideo()
 
         // Do any additional setup after loading the view.
@@ -42,7 +49,7 @@ class deepHouseController: UIViewController {
     
     func getJSONAndLoadVideo()
     {
-        var artistCluster: [String] = getArtistCluster(identifier: self.identifier)
+        let artistCluster: [String] = getArtistCluster(identifier: self.identifier)
         let chosenArtist = artistCluster[Int.random(in: 1..<artistCluster.count)]
         let apiKey = "AIzaSyDDo_KTjSJhP-S2w32QRVDpWLQ0-kRslMo"
         let session = URLSession.shared
@@ -99,6 +106,17 @@ class deepHouseController: UIViewController {
             return [ ]
         }
     }
+    
+    @IBAction func doRightSwipe(_ sender: UISwipeGestureRecognizer) {
+        self.playRandomSong(self.tracksToChoose)
+    }
+    
+    
+    @IBAction func doLeftSwipe(_ sender: UISwipeGestureRecognizer) {
+        print("Left swipe detected")
+        self.getJSONAndLoadVideo()
+    }
+    
     
     /*
     // MARK: - Navigation
