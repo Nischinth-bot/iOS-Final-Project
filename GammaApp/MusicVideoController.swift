@@ -9,12 +9,12 @@
 import UIKit
 import WebKit
 
-class deepHouseController: UIViewController, UIGestureRecognizerDelegate {
+class deepHouseController: UIViewController {
 
     var identifier: String = ""
     @IBOutlet weak var webView: WKWebView!
     let foo = WKWebView()
-    let deepHouse = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
+    let deepHouse = [" Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
     let jazz = ["Miles%20Davis","John%20Coltrane", "Charles%20Mingus","Art%20blakey","Donald%20Byrd", "Alice%20Coltrane"]
     let dub = ["Burial","hyperdub", "dj%20rashad", "dj%20spinn%20hyperdub"]
     var tracksToChoose:[String] = []
