@@ -9,16 +9,17 @@
 import UIKit
 import WebKit
 
-class MusicVideoLoaderViewController: UIViewController {
+class VideoLoaderViewController: UIViewController {
 
     var identifier: String = ""
+    var previousArtist: String = ""
     @IBOutlet weak var webView: WKWebView!
     
     @IBOutlet var myView: UIView!
     let foo = WKWebView()
     let deepHouse = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
-    let jazz = ["Miles%20Davis","John%20Coltrane", "Charles%20Mingus","Art%20blakey","Donald%20Byrd", "Alice%20Coltrane"]
-    let dub = ["Burial","hyperdub", "dj%20rashad", "dj%20spinn%20hyperdub"]
+    let jazz = ["Miles%20Davis","John%20Coltrane", "Charles%20Mingus","Art%20blakey","Donald%20Byrd", "Alice%20Coltrane","Duke%20Ellington"]
+    let dub = ["Burial","hyperdub"]
     let techno = ["Arnaud%20Le%20Texier","Planetary%20Assault%20Systems","Ness%20techno","Joachim%20Spieth","Affin%20Records","Polar%20Insertia","Codex%20Empire"]
     var tracksToChoose:[String] = []
     
@@ -48,10 +49,20 @@ class MusicVideoLoaderViewController: UIViewController {
     func getJSONAndLoadVideo()
     {
         let artistCluster: [String] = getArtistCluster(identifier: self.identifier)
-        let chosenArtist = artistCluster[Int.random(in: 1..<artistCluster.count)]
-        let apiKey = "AIzaSyDDo_KTjSJhP-S2w32QRVDpWLQ0-kRslMo"
+        var chosenArtist = artistCluster[Int.random(in: 1..<artistCluster.count)]
+        if(self.previousArtist == "") //First artist pick
+        {
+            self.previousArtist = chosenArtist
+        }
+        else{
+            while (chosenArtist == self.previousArtist){
+                     chosenArtist = artistCluster[Int.random(in: 1..<artistCluster.count)]
+            }
+        } //Make sure to get a different artist than last time.
+
+        let apiKey = "AIzaSyCozKD1dSLnwhM-d_246aDlohMXO9hKv5w"
         let session = URLSession.shared
-        let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&q=\(chosenArtist)&key=\(apiKey)")
+        let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=200&q=\(chosenArtist)&key=\(apiKey)")
         let task = session.dataTask(with: url!){ data,response,error in
             
             if error != nil || data == nil{
@@ -109,19 +120,11 @@ class MusicVideoLoaderViewController: UIViewController {
     
     func addSwipeGestures(){
         let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doRightSwipe(_:)))
-        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(doLeftSwipe(_:)))
-        myView.addGestureRecognizer(rightSwipeGesture)
-        myView.addGestureRecognizer(leftSwipeGesture)
+         myView.addGestureRecognizer(rightSwipeGesture)
     }
     
     @IBAction func doRightSwipe(_ sender: UISwipeGestureRecognizer) {
         self.playRandomSong(self.tracksToChoose)
-    }
-    
-    
-    @IBAction func doLeftSwipe(_ sender: UISwipeGestureRecognizer) {
-        print("Left swipe detected")
-        self.getJSONAndLoadVideo()
     }
     
     
