@@ -11,9 +11,12 @@ import WebKit
 
 class deepHouseController: UIViewController, UIGestureRecognizerDelegate {
 
+    var identifier: String = ""
     @IBOutlet weak var webView: WKWebView!
     let foo = WKWebView()
-    let artists = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
+    let deepHouse = ["Kerri%20Chandler", "Theo%20Parrish", "DJ%20Steaw", "Janeret", "Frankie%20Kunckles", "dj%20pierre%20acid", "larry%20heard", "rutilance%20recordings", "chikyu-u%20records", "taro%20asama", "ortella","berlin%20house%20music"]
+    let jazz = ["Miles%20Davis","John%20Coltrane", "Charles%20Mingus","Art%20blakey","Donald%20Byrd", "Alice%20Coltrane"]
+    let dub = ["Burial","hyperdub", "dj%20rashad", "dj%20spinn%20hyperdub"]
     var tracksToChoose:[String] = []
     
     override func viewDidLoad() {
@@ -39,10 +42,11 @@ class deepHouseController: UIViewController, UIGestureRecognizerDelegate {
     
     func getJSONAndLoadVideo()
     {
-        let chosenOne = artists[Int.random(in: 1..<artists.count)]
+        var artistCluster: [String] = getArtistCluster(identifier: self.identifier)
+        let chosenArtist = artistCluster[Int.random(in: 1..<artistCluster.count)]
         let apiKey = "AIzaSyDDo_KTjSJhP-S2w32QRVDpWLQ0-kRslMo"
         let session = URLSession.shared
-        let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&q=\(chosenOne)&key=\(apiKey)")
+        let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&q=\(chosenArtist)&key=\(apiKey)")
         let task = session.dataTask(with: url!){ data,response,error in
             
             if error != nil || data == nil{
@@ -81,6 +85,19 @@ class deepHouseController: UIViewController, UIGestureRecognizerDelegate {
         
         while(task == nil){ usleep(1)}
         task.resume()
+    }
+    
+    func getArtistCluster(identifier: String) -> [String]{
+        switch identifier{
+        case "Deep House":
+            return self.deepHouse
+        case "Jazz":
+            return self.jazz
+        case "Hyperdub":
+            return self.dub
+        default:
+            return [ ]
+        }
     }
     
     /*

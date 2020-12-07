@@ -17,8 +17,26 @@ class ViewController: UIViewController {
     }
 
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    let vc = segue.destination as? deepHouseController
+        switch(segue.identifier){
+        case "link2house":
+            vc?.identifier = "Deep House"
+        case "link2jazz":
+            vc?.identifier = "Jazz"
+        case "link2dub":
+            vc?.identifier = "Hyperdub"
+        default:
+            return
+        }
+        
+        
+    }
+    
     @IBAction func goToHouseView(_ sender: UIButton) {
         performSegue(withIdentifier: "link2house", sender: self)
+        
     }
 }
 

@@ -25,6 +25,22 @@
                                     <segue destination="9ll-JS-9eX" kind="show" identifier="link2house" id="7Ti-g2-jaW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Egw-xB-fll">
+                                <rect key="frame" x="173" y="311" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Hyperdub"/>
+                                <connections>
+                                    <segue destination="9ll-JS-9eX" kind="show" identifier="link2dub" id="Ibl-1d-PSi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4p-FZ-ner">
+                                <rect key="frame" x="191" y="495" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Jazz"/>
+                                <connections>
+                                    <segue destination="9ll-JS-9eX" kind="show" identifier="link2jazz" id="gxA-b0-O3q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
@@ -86,4 +102,7 @@
             <point key="canvasLocation" x="1047.8260869565217" y="784.82142857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gxA-b0-O3q"/>
+    </inferredMetricsTieBreakers>
 </document>
